@@ -1,44 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Resume</title>
+    <title>Резюме</title>
     <style>
+        /* Основні стилі сторінки */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif; /* Можна замінити шрифт на інший */
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
             color: #333;
-            margin: 20px;
+        }
+
+        /* Задній фон */
+        .background {
+            background-color: #e0f7fa;
+            padding: 50px 20px;
+        }
+
+        /* Стиль для секцій */
+        h1, h2 {
+            color: #004d40;
+        }
+
+        /* Навички, освіта, проекти */
+        section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Кружок для фото */
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #004d40;
+            display: block;
+            margin: 0 auto 20px auto;
+            background-image: url('your-photo.png'); /* Вставте шлях до фото */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Список навичок */
+        ul {
+            list-style-type: none;
             padding: 0;
         }
-        h1, h2 {
-            color: #4A90E2;
+
+        ul li::before {
+            content: "• ";
+            color: #00796b;
+            font-weight: bold;
         }
-        h1 {
-            font-size: 2.5em;
-        }
-        h2 {
-            font-size: 1.75em;
-            margin-top: 30px;
-        }
-        p, ul {
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-        ul {
-            list-style-type: disc;
-            margin-left: 20px;
-        }
-        a {
-            color: #4A90E2;
+
+        /* Кнопка для проектів */
+        .project-link {
+            color: #0288d1;
             text-decoration: none;
         }
     </style>
 </head>
 <body>
-    
+
+<div class="background">
     <h1>Про мене</h1>
+    <div class="profile-photo"></div> <!-- Кружок для фото -->
     <p>Я Юрій Стефура, студент Кам'янець-Подільський національний університет імені Івана Огієнка (КПНУ). Я люблю вчитися та досліджувати нові технології і завжди готовий прийняти нові виклики.</p>
 
     <h2>Навички</h2>
