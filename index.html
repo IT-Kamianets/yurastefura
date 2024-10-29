@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             color: #333;
-            position: relative; /* Для абсолютного позиціонування елементів */
+            position: relative;
             overflow-x: hidden; /* Прибирає горизонтальний скрол */
         }
 
@@ -79,25 +79,39 @@
             margin-right: auto;
         }
 
-        /* Контейнер для іконок внизу */
-        .icon-container {
+        /* Контейнер для іконок з боків */
+        .icon-container-left, .icon-container-right {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
+            top: 0;
+            width: 100px;
+            height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: space-around;
             align-items: center;
-            background-color: rgba(240, 244, 248, 0.8); /* Напівпрозорий фон */
-            z-index: 1;
-            pointer-events: none; /* Іконки не перешкоджають взаємодії з контентом */
+            pointer-events: none;
+        }
+
+        .icon-container-left {
+            left: 0;
+            background-color: rgba(240, 244, 248, 0.5); /* Легкий фон зліва */
+        }
+
+        .icon-container-right {
+            right: 0;
+            background-color: rgba(240, 244, 248, 0.5); /* Легкий фон справа */
         }
 
         .icon {
             width: 50px;
             height: 50px;
             opacity: 0.8;
+        }
+
+        /* Щоб прибрати іконки зверху над заголовком */
+        .header-background + .icon-container-left,
+        .header-background + .icon-container-right {
+            display: none;
         }
     </style>
 </head>
@@ -146,11 +160,14 @@
     </section>
 </div>
 
-<!-- Контейнер для іконок -->
-<div class="icon-container" id="iconContainer"></div>
+<!-- Лівий контейнер для іконок -->
+<div class="icon-container-left" id="iconContainerLeft"></div>
+
+<!-- Правий контейнер для іконок -->
+<div class="icon-container-right" id="iconContainerRight"></div>
 
 <script>
-    // Масив з URL іконок (без корови)
+    // Масив з URL іконок
     const icons = [
         "https://cdn-icons-png.freepik.com/256/6988/6988878.png",
         "https://cdn-icons-png.flaticon.com/512/8277/8277432.png",
@@ -159,15 +176,22 @@
         "https://cdn-icons-png.flaticon.com/512/6583/6583483.png"
     ];
 
-    // Додавання іконок у контейнер
+    // Функція для додавання іконок у контейнери
     function generateIcons() {
-        const iconContainer = document.getElementById("iconContainer");
+        const leftContainer = document.getElementById("iconContainerLeft");
+        const rightContainer = document.getElementById("iconContainerRight");
 
-        icons.forEach(iconUrl => {
+        icons.forEach((iconUrl, index) => {
             const icon = document.createElement("img");
             icon.src = iconUrl;
             icon.classList.add("icon");
-            iconContainer.appendChild(icon);
+
+            // Розподіляємо іконки порівну між лівим і правим контейнером
+            if (index % 2 === 0) {
+                leftContainer.appendChild(icon);
+            } else {
+                rightContainer.appendChild(icon);
+            }
         });
     }
 
@@ -177,3 +201,4 @@
 
 </body>
 </html>
+
