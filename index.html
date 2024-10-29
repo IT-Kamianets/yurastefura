@@ -16,7 +16,7 @@
 
         /* Верхня секція з фоновим зображенням */
         .header-background {
-            background-image: linear-gradient(rgba(240, 244, 248, 0.7), rgba(240, 244, 248, 0.7)), url('https://univer.km.ua/sites/default/files/styles/420x230_kadruvannya_/public/news/%D0%9A%D0%9F%D0%9D%D0%A3.jpg?itok=NXz1Mbj7');
+            background-image: linear-gradient(rgba(240, 244, 248, 0.8), rgba(240, 244, 248, 0.8)), url('https://univer.km.ua/sites/default/files/styles/420x230_kadruvannya_/public/news/%D0%9A%D0%9F%D0%9D%D0%A3.jpg?itok=NXz1Mbj7');
             background-size: cover;
             background-position: center;
             height: 300px;
@@ -82,21 +82,9 @@
             width: 50px;
             height: 50px;
             position: absolute;
-            opacity: 0.6;
+            opacity: 0.8;
             pointer-events: none;
         }
-
-        /* Випадкові позиції іконок на сірому фоні */
-        .icon-1 { top: 10px; left: 15%; }
-        .icon-2 { top: 50px; left: 45%; }
-        .icon-3 { top: 90px; right: 10%; }
-        .icon-4 { bottom: 20px; left: 20%; }
-        .icon-5 { bottom: 40px; right: 40%; }
-        .icon-6 { bottom: 80px; left: 60%; }
-        .icon-7 { top: 200px; left: 30%; }
-        .icon-8 { bottom: 150px; right: 25%; }
-        .icon-9 { top: 300px; right: 5%; }
-        .icon-10 { bottom: 20px; left: 70%; }
     </style>
 </head>
 <body>
@@ -107,7 +95,7 @@
 </div>
 
 <!-- Сіра секція з основним контентом -->
-<div class="content-background">
+<div class="content-background" id="contentBackground">
     <section>
         <div class="profile-photo"></div> <!-- Кружок для фото -->
         <p>Я Юрій Стефура, студент Кам'янець-Подільський національний університет імені Івана Огієнка (КПНУ). Я люблю вчитися та досліджувати нові технології і завжди готовий прийняти нові виклики.</p>
@@ -142,19 +130,40 @@
         <p>Пошта: kn1b21.stefura@kpnu.edu.ua </p>
         <p>GitHub: <a href="https://github.com/Stefura">Stefura</a></p>
     </section>
-
-    <!-- Іконки тваринок на сірому фоні -->
-    <img src="https://cdn-icons-png.freepik.com/256/6988/6988878.png?semt=ais_hybrid" class="icon icon-1" alt="Cat Icon">
-    <img src="https://cdn-icons-png.flaticon.com/512/8277/8277432.png" class="icon icon-2" alt="Dog Icon">
-    <img src="https://cdn-icons-png.flaticon.com/512/2938/2938228.png" class="icon icon-3" alt="Bear Icon">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp6I6NmIbMAVVX67OLeelZVhUcCBm_MbDJJQ&s" class="icon icon-4" alt="Cow Icon">
-    <img src="https://icons.iconarchive.com/icons/iconarchive/cute-animal/512/Cute-Rabbit-icon.png" class="icon icon-5" alt="Rabbit Icon">
-    <img src="https://cdn-icons-png.flaticon.com/512/6583/6583483.png" class="icon icon-6" alt="Tiger Icon">
-    <img src="https://cdn-icons-png.flaticon.com/512/535/535234.png" class="icon icon-7" alt="Elephant Icon">
-    <img src="https://cdn-icons-png.flaticon.com/512/1487/1487403.png" class="icon icon-8" alt="Fox Icon">
-    <img src="https://cdn-icons-png.flaticon.com/512/616/616647.png" class="icon icon-9" alt="Penguin Icon">
-    <img src="https://cdn-icons-png.flaticon.com/512/1885/1885332.png" class="icon icon-10" alt="Kangaroo Icon">
 </div>
+
+<script>
+    // Масив з URL іконок тваринок
+    const icons = [
+        "https://cdn-icons-png.freepik.com/256/6988/6988878.png",
+        "https://cdn-icons-png.flaticon.com/512/8277/8277432.png",
+        "https://cdn-icons-png.flaticon.com/512/2938/2938228.png",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp6I6NmIbMAVVX67OLeelZVhUcCBm_MbDJJQ&s",
+        "https://icons.iconarchive.com/icons/iconarchive/cute-animal/512/Cute-Rabbit-icon.png",
+        "https://cdn-icons-png.flaticon.com/512/6583/6583483.png"
+    ];
+
+    // Функція для випадкового розміщення іконок на сірому фоні
+    function generateRandomIcons() {
+        const contentBackground = document.getElementById("contentBackground");
+        const iconCount = 10; // Кількість іконок, які будуть додані
+
+        for (let i = 0; i < iconCount; i++) {
+            const icon = document.createElement("img");
+            icon.src = icons[Math.floor(Math.random() * icons.length)];
+            icon.classList.add("icon");
+
+            // Встановлення випадкових позицій іконок в межах сірого фону
+            icon.style.top = Math.random() * (contentBackground.offsetHeight - 50) + "px";
+            icon.style.left = Math.random() * (contentBackground.offsetWidth - 50) + "px";
+
+            contentBackground.appendChild(icon);
+        }
+    }
+
+    // Виклик функції при завантаженні сторінки
+    window.onload = generateRandomIcons;
+</script>
 
 </body>
 </html>
