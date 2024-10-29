@@ -12,8 +12,8 @@
             margin: 0;
             padding: 0;
             color: #333;
-            position: relative; /* Дозволяє використовувати абсолютні позиції дочірніх елементів */
-            overflow-x: hidden; /* Прибирає можливий горизонтальний скрол */
+            position: relative; /* Для абсолютного позиціонування елементів */
+            overflow-x: hidden; /* Прибирає горизонтальний скрол */
         }
 
         /* Верхня секція з фоновим зображенням */
@@ -34,8 +34,7 @@
             background-color: #e0f7fa;
             padding: 50px 20px;
             position: relative;
-            overflow: hidden;
-            z-index: 2; /* Пріоритет відображення контенту над іконками */
+            z-index: 2;
         }
 
         /* Стиль для секцій */
@@ -69,7 +68,6 @@
             font-weight: bold;
         }
 
-        /* Стиль для секційного контейнера */
         section {
             background-color: #ffffff;
             padding: 20px;
@@ -81,23 +79,24 @@
             margin-right: auto;
         }
 
-        /* Контейнер для іконок */
+        /* Контейнер для іконок внизу */
         .icon-container {
-            position: absolute;
-            top: 0;
+            position: fixed;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: 1; /* Іконки під основним контентом */
-            pointer-events: none;
-            overflow: hidden;
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(240, 244, 248, 0.8); /* Напівпрозорий фон */
+            z-index: 1;
+            pointer-events: none; /* Іконки не перешкоджають взаємодії з контентом */
         }
 
-        /* Стиль для іконок */
         .icon {
             width: 50px;
             height: 50px;
-            position: absolute;
             opacity: 0.8;
         }
     </style>
@@ -109,13 +108,10 @@
     <h1>Про мене</h1>
 </div>
 
-<!-- Контейнер для іконок -->
-<div class="icon-container" id="iconContainer"></div>
-
 <!-- Сіра секція з основним контентом -->
-<div class="content-background" id="contentBackground">
+<div class="content-background">
     <section>
-        <div class="profile-photo"></div> <!-- Кружок для фото -->
+        <div class="profile-photo"></div>
         <p>Я Юрій Стефура, студент Кам'янець-Подільський національний університет імені Івана Огієнка (КПНУ). Я люблю вчитися та досліджувати нові технології і завжди готовий прийняти нові виклики.</p>
     </section>
 
@@ -150,37 +146,33 @@
     </section>
 </div>
 
+<!-- Контейнер для іконок -->
+<div class="icon-container" id="iconContainer"></div>
+
 <script>
-    // Масив з URL іконок тваринок
+    // Масив з URL іконок (без корови)
     const icons = [
         "https://cdn-icons-png.freepik.com/256/6988/6988878.png",
         "https://cdn-icons-png.flaticon.com/512/8277/8277432.png",
         "https://cdn-icons-png.flaticon.com/512/2938/2938228.png",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp6I6NmIbMAVVX67OLeelZVhUcCBm_MbDJJQ&s",
         "https://icons.iconarchive.com/icons/iconarchive/cute-animal/512/Cute-Rabbit-icon.png",
         "https://cdn-icons-png.flaticon.com/512/6583/6583483.png"
     ];
 
-    // Функція для випадкового розміщення іконок
-    function generateRandomIcons() {
+    // Додавання іконок у контейнер
+    function generateIcons() {
         const iconContainer = document.getElementById("iconContainer");
-        const iconCount = 10; // Кількість іконок
 
-        for (let i = 0; i < iconCount; i++) {
+        icons.forEach(iconUrl => {
             const icon = document.createElement("img");
-            icon.src = icons[Math.floor(Math.random() * icons.length)];
+            icon.src = iconUrl;
             icon.classList.add("icon");
-
-            // Випадкове позиціонування в межах контейнера
-            icon.style.top = Math.random() * 100 + "%";
-            icon.style.left = Math.random() * 100 + "%";
-
             iconContainer.appendChild(icon);
-        }
+        });
     }
 
     // Виклик функції при завантаженні сторінки
-    window.onload = generateRandomIcons;
+    window.onload = generateIcons;
 </script>
 
 </body>
