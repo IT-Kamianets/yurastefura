@@ -30,7 +30,8 @@
         .content-background {
             background-color: #e0f7fa;
             padding: 50px 20px;
-            position: relative; /* Відносне позиціонування для розміщення іконок */
+            position: relative;
+            overflow: hidden;
         }
 
         /* Стиль для секцій */
@@ -76,7 +77,7 @@
             margin-right: auto;
         }
 
-        /* Стиль для іконок в нижній частині */
+        /* Стиль для іконок тваринок */
         .icon {
             width: 50px;
             height: 50px;
@@ -84,11 +85,13 @@
             opacity: 0.8;
         }
 
-        .icon-1 { bottom: 20px; left: 20px; }
-        .icon-2 { bottom: 40px; right: 50px; }
-        .icon-3 { bottom: 10px; left: 70%; }
-        .icon-4 { bottom: 60px; left: 40%; }
-        .icon-5 { bottom: 30px; right: 20%; }
+        /* Випадкові позиції іконок */
+        .icon-1 { top: 10px; left: 15%; }
+        .icon-2 { top: 50px; left: 45%; }
+        .icon-3 { top: 90px; right: 10%; }
+        .icon-4 { bottom: 20px; left: 20%; }
+        .icon-5 { bottom: 40px; right: 40%; }
+        .icon-6 { bottom: 80px; left: 60%; }
     </style>
 </head>
 <body>
@@ -135,12 +138,13 @@
         <p>GitHub: <a href="https://github.com/Stefura">Stefura</a></p>
     </section>
 
-    <!-- Іконки тваринок у нижній частині -->
+    <!-- Іконки тваринок на сірому фоні -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Emoji_u1f431.svg" class="icon icon-1" alt="Cat Icon">
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Emoji_u1f436.svg" class="icon icon-2" alt="Dog Icon">
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Emoji_u1f43b.svg" class="icon icon-3" alt="Bear Icon">
     <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Emoji_u1f42e.svg" class="icon icon-4" alt="Cow Icon">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Emoji_u1f430.svg" class="icon icon-5" alt="Rabbit Icon">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Emoji_u1f42f.svg" class="icon icon-6" alt="Tiger Icon">
 </div>
 
 </body>
