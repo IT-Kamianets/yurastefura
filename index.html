@@ -81,7 +81,8 @@
         .icon {
             width: 50px;
             height: 50px;
-            position: absolute;
+            position: fixed; /* Щоб іконки залишалися на місці під час прокрутки */
+            z-index: 1; /* Щоб іконки не перекривали основний контент */
             opacity: 0.8;
             pointer-events: none;
         }
@@ -143,9 +144,8 @@
         "https://cdn-icons-png.flaticon.com/512/6583/6583483.png"
     ];
 
-    // Функція для випадкового розміщення іконок на сірому фоні
+    // Функція для випадкового розміщення іконок на фоні
     function generateRandomIcons() {
-        const contentBackground = document.getElementById("contentBackground");
         const iconCount = 10; // Кількість іконок, які будуть додані
 
         for (let i = 0; i < iconCount; i++) {
@@ -153,11 +153,12 @@
             icon.src = icons[Math.floor(Math.random() * icons.length)];
             icon.classList.add("icon");
 
-            // Встановлення випадкових позицій іконок в межах сірого фону
-            icon.style.top = Math.random() * (contentBackground.offsetHeight - 50) + "px";
-            icon.style.left = Math.random() * (contentBackground.offsetWidth - 50) + "px";
+            // Генеруємо випадкові позиції на фоні сторінки
+            icon.style.top = Math.random() * (window.innerHeight - 50) + "px";
+            icon.style.left = Math.random() * (window.innerWidth - 50) + "px";
 
-            contentBackground.appendChild(icon);
+            // Додаємо іконку до body
+            document.body.appendChild(icon);
         }
     }
 
