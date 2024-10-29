@@ -12,8 +12,6 @@
             margin: 0;
             padding: 0;
             color: #333;
-            position: relative;
-            overflow-x: hidden;
         }
 
         /* Верхня секція з фоном університету */
@@ -33,8 +31,6 @@
         .content-background {
             background-color: #e0f7fa;
             padding: 50px 20px;
-            position: relative;
-            z-index: 2;
             display: flex;
             justify-content: center;
         }
@@ -82,33 +78,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
-
-        /* Контейнери для іконок з боків */
-        .icon-container-left, .icon-container-right {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            pointer-events: none;
-        }
-
-        .icon-container-left {
-            left: -70px; /* Зміщення ліворуч за межі вікна */
-        }
-
-        .icon-container-right {
-            right: -70px; /* Зміщення праворуч за межі вікна */
-        }
-
-        .icon {
-            width: 50px;
-            height: 50px;
-            opacity: 0.8;
-        }
     </style>
 </head>
 <body>
@@ -120,9 +89,6 @@
 
 <!-- Сіра секція з основним контентом -->
 <div class="content-background">
-    <div class="icon-container-left" id="iconContainerLeft"></div> <!-- Ліва панель з іконками -->
-    <div class="icon-container-right" id="iconContainerRight"></div> <!-- Права панель з іконками -->
-    
     <div class="content-container">
         <section>
             <div class="profile-photo"></div>
@@ -160,39 +126,6 @@
         </section>
     </div>
 </div>
-
-<script>
-    // Масив з URL іконок
-    const icons = [
-        "https://cdn-icons-png.freepik.com/256/6988/6988878.png",
-        "https://cdn-icons-png.flaticon.com/512/8277/8277432.png",
-        "https://cdn-icons-png.flaticon.com/512/2938/2938228.png",
-        "https://icons.iconarchive.com/icons/iconarchive/cute-animal/512/Cute-Rabbit-icon.png",
-        "https://cdn-icons-png.flaticon.com/512/6583/6583483.png"
-    ];
-
-    // Функція для додавання іконок у контейнери
-    function generateIcons() {
-        const leftContainer = document.getElementById("iconContainerLeft");
-        const rightContainer = document.getElementById("iconContainerRight");
-
-        icons.forEach((iconUrl, index) => {
-            const icon = document.createElement("img");
-            icon.src = iconUrl;
-            icon.classList.add("icon");
-
-            // Розподіляємо іконки порівну між лівим і правим контейнером
-            if (index % 2 === 0) {
-                leftContainer.appendChild(icon);
-            } else {
-                rightContainer.appendChild(icon);
-            }
-        });
-    }
-
-    // Виклик функції при завантаженні сторінки
-    window.onload = generateIcons;
-</script>
 
 </body>
 </html>
